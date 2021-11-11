@@ -8,8 +8,6 @@ const web3 = new Web3(new Web3.providers.HttpProvider('https://mainnet.infura.io
 const erc721 = require("@0xcert/ethereum-erc721/build/erc721.json").ERC721
 const contract = new web3.eth.Contract(erc721.abi, CONTRACT_ACCOUNT)
 
-let addresses = []
-let count = 0
 let idToNumber = {}
 
 contract.getPastEvents('Transfer', { fromBlock: CONTRACT_START }).then(events => {
