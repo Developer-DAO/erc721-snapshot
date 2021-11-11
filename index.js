@@ -28,7 +28,7 @@ contract.getPastEvents('Transfer', { fromBlock: CONTRACT_START }).then(events =>
   const filteredArr = []
 
   Object.entries(idToNumber).map(item => {
-    if (item[1] !== Number()) {
+    if (item[1] !== Number(0)) {
       filteredArr.push(item[0])
     }
   })
