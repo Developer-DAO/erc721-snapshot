@@ -25,6 +25,9 @@ contract.getPastEvents('Transfer', { fromBlock: CONTRACT_START }).then(events =>
     }
   });
 
+  console.log('idToNumber: ', idToNumber)
+  fs.writeFileSync('./allData.json', JSON.stringify(idToNumber))
+
   const filteredArr = []
 
   Object.entries(idToNumber).map(item => {
