@@ -1,6 +1,7 @@
-const CONTRACT_ACCOUNT = "0x25ed58c027921E14D86380eA2646E3a1B5C55A8b";
-const CONTRACT_START = 13153967;
-const INFURA_KEY = "263a394bc14c4107949a73b0fb485ebb";
+const CONTRACT_ACCOUNT = "0x25ed58c027921E14D86380eA2646E3a1B5C55A8b"
+const CONTRACT_START = 13153967
+const SNAPSHOT_BLOCK = 13612670
+const INFURA_KEY = process.env.infuaraId
 const fs = require('fs')
 
 const Web3 = require('web3')
@@ -10,7 +11,7 @@ const contract = new web3.eth.Contract(erc721.abi, CONTRACT_ACCOUNT)
 
 let idToNumber = {}
 
-contract.getPastEvents('Transfer', { fromBlock: CONTRACT_START }).then(events => {
+contract.getPastEvents('Transfer', { fromBlock: CONTRACT_START, toBlock: SNAPSHOT_BLOCK }).then(events => {
   events.forEach(event => {
     /* if the user does not yet have one token, add one */
     if (!idToNumber[event.returnValues._to]) {
@@ -23,7 +24,7 @@ contract.getPastEvents('Transfer', { fromBlock: CONTRACT_START }).then(events =>
       /* if the user is sending a token to someone else, remove the token from their count */
       idToNumber[event.returnValues._from] = idToNumber[event.returnValues._from] - 1
     }
-  });
+  })
 
   console.log('idToNumber: ', idToNumber)
   fs.writeFileSync('./allData.json', JSON.stringify(idToNumber))
@@ -39,4 +40,4 @@ contract.getPastEvents('Transfer', { fromBlock: CONTRACT_START }).then(events =>
   console.log('filteredArr: ', filteredArr.length)
 
   fs.writeFileSync('./snapshot.json', JSON.stringify(filteredArr))
-});
+})
