@@ -1,7 +1,7 @@
 const CONTRACT_ACCOUNT = "0x25ed58c027921E14D86380eA2646E3a1B5C55A8b"
 const CONTRACT_START = 13153967
 const SNAPSHOT_BLOCK = 13612670
-const INFURA_KEY = process.env.infuaraId
+const INFURA_KEY = process.env.infuraId
 const fs = require('fs')
 
 const Web3 = require('web3')
