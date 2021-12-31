@@ -27,7 +27,7 @@ contract.getPastEvents('Transfer', { fromBlock: CONTRACT_START, toBlock: SNAPSHO
   })
 
   console.log('idToNumber: ', idToNumber)
-  fs.writeFileSync('./allData.json', JSON.stringify(idToNumber))
+  fs.writeFileSync('./allData.json', JSON.stringify(idToNumber, null, 2))
 
   const filteredArr = []
 
@@ -39,5 +39,5 @@ contract.getPastEvents('Transfer', { fromBlock: CONTRACT_START, toBlock: SNAPSHO
 
   console.log('filteredArr: ', filteredArr.length)
 
-  fs.writeFileSync('./snapshot.json', JSON.stringify(filteredArr))
+  fs.writeFileSync('./snapshot.json', JSON.stringify(filteredArr, null, 2))
 })
